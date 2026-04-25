@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
+import LuxuryBackground from "@/components/LuxuryBackground";
 
 export default function Gallery() {
   const { gallery } = invitationData;
   return (
-    <section className="px-6 py-20">
+    <section className="relative px-6 py-20 overflow-hidden">
+      <LuxuryBackground variant="warm" particles={12} />
       <h3 className="text-center text-3xl font-light italic text-foreground mb-12">
         Մեր պահերը
       </h3>

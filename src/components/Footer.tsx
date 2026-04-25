@@ -1,4 +1,5 @@
 import { invitationData } from "@/data/invitationData";
+import LuxuryBackground from "@/components/LuxuryBackground";
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString("hy-AM", {
@@ -8,7 +9,8 @@ const formatDate = (iso: string) =>
 export default function Footer() {
   const { couple, texts } = invitationData;
   return (
-    <footer className="px-6 py-16 text-center border-t border-border mt-10">
+    <footer className="relative px-6 py-16 text-center border-t border-border mt-10 overflow-hidden">
+      <LuxuryBackground variant="default" particles={10} showOrnaments={false} />
       <p className="text-xs tracking-[0.3em] uppercase text-primary">
         {formatDate(couple.date)}
       </p>

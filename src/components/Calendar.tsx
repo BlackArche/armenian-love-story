@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
+import LuxuryBackground from "@/components/LuxuryBackground";
 
 export default function Calendar() {
   const { calendar } = invitationData;
@@ -9,7 +10,8 @@ export default function Calendar() {
   ];
 
   return (
-    <section className="px-6 py-20">
+    <section className="relative px-6 py-20 overflow-hidden">
+      <LuxuryBackground variant="default" particles={10} showOrnaments={false} />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

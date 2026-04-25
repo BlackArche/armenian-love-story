@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
+import LuxuryBackground from "@/components/LuxuryBackground";
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString("hy-AM", {
@@ -21,9 +22,7 @@ export default function Cover({ onOpen }: { onOpen: () => void }) {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-16 overflow-hidden bg-background">
-      {/* Decorative blobs */}
-      <div className="absolute -top-24 -left-20 w-72 h-72 rounded-full bg-primary/15 blur-3xl" />
-      <div className="absolute -bottom-32 -right-24 w-96 h-96 rounded-full bg-secondary/15 blur-3xl" />
+      <LuxuryBackground variant="warm" particles={20} />
 
       <motion.p
         initial={{ opacity: 0, y: -10 }}

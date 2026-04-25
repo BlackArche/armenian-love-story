@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { invitationData, submitRSVP, type RSVPPayload } from "@/data/invitationData";
+import LuxuryBackground from "@/components/LuxuryBackground";
 
 const fieldLabels = {
   name: "Ձեր անունը",
@@ -34,7 +35,8 @@ export default function RSVP() {
   };
 
   return (
-    <section className="px-6 py-20">
+    <section className="relative px-6 py-20 overflow-hidden">
+      <LuxuryBackground variant="soft" particles={12} />
       <motion.form
         onSubmit={onSubmit}
         initial={{ opacity: 0, y: 30 }}
