@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
+import LuxuryBackground from "@/components/LuxuryBackground";
 
 export default function Invitation() {
   const { couple, texts } = invitationData;
   return (
     <section className="relative px-6 py-24 overflow-hidden">
-      <div className="absolute top-10 -left-20 w-60 h-60 rounded-full bg-secondary/10 blur-3xl" />
-      <div className="absolute bottom-10 -right-20 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
+      <LuxuryBackground variant="soft" particles={12} />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
+import LuxuryBackground from "@/components/LuxuryBackground";
 
 const labels: Record<string, string> = {
   ceremony: "Պսակադրություն",
@@ -48,7 +49,8 @@ export default function Timeline() {
   const pathD = `M 60 60 C 260 120, 60 240, 60 300 S 260 480, 60 540`;
 
   return (
-    <section ref={ref} className="px-6 py-20 relative">
+    <section ref={ref} className="relative px-6 py-20 overflow-hidden">
+      <LuxuryBackground variant="sage" particles={14} />
       <h3 className="text-center text-3xl font-light italic text-foreground mb-12">
         Մեր օրվա ընթացքը
       </h3>

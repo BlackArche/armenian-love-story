@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
+import LuxuryBackground from "@/components/LuxuryBackground";
 
 const labels = { d: "Օր", h: "Ժամ", m: "Րոպե", s: "Վրկ" };
 
@@ -47,7 +48,8 @@ export default function Countdown() {
   }, [target]);
 
   return (
-    <section className="px-6 py-20">
+    <section className="relative px-6 py-20 overflow-hidden">
+      <LuxuryBackground variant="warm" particles={16} />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
