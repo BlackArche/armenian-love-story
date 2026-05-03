@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { invitationData } from "@/data/invitationData";
+import { type InvitationData } from "@/lib/api";
 import LuxuryBackground from "@/components/LuxuryBackground";
 
 const labels = { d: "Օր", h: "Ժամ", m: "Րոպե", s: "Վրկ" };
@@ -8,9 +8,12 @@ const labels = { d: "Օր", h: "Ժամ", m: "Րոպե", s: "Վրկ" };
 function diff(target: number) {
   const now = Date.now();
   let s = Math.max(0, Math.floor((target - now) / 1000));
-  const d = Math.floor(s / 86400); s -= d * 86400;
-  const h = Math.floor(s / 3600); s -= h * 3600;
-  const m = Math.floor(s / 60); s -= m * 60;
+  const d = Math.floor(s / 86400);
+  s -= d * 86400;
+  const h = Math.floor(s / 3600);
+  s -= h * 3600;
+  const m = Math.floor(s / 60);
+  s -= m * 60;
   return { d, h, m, s };
 }
 
@@ -31,15 +34,13 @@ function Cell({ value, label }: { value: number; label: string }) {
           </motion.span>
         </AnimatePresence>
       </div>
-      <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mt-1">
-        {label}
-      </p>
+      <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mt-1">{label}</p>
     </div>
   );
 }
 
-export default function Countdown() {
-  const { couple, texts } = invitationData;
+export default function Countdown({ data }: { data: InvitationData }) {
+  const { couple, texts } = data;
   const target = new Date(couple.date).getTime();
   const [t, setT] = useState(() => diff(target));
   useEffect(() => {

@@ -10,34 +10,42 @@ import Countdown from "@/components/Countdown";
 import RSVP from "@/components/RSVP";
 import Footer from "@/components/Footer";
 import MusicButton from "@/components/MusicButton";
-import { invitationData } from "@/data/invitationData";
-import { type InvitationData } from "@/lib/api";
+import { fetchInvitation } from "@/lib/api";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: `${invitationData.couple.title} — Հարսանյաց հրավեր` },
-      { name: "description", content: invitationData.texts.invitationLine1 },
-      { property: "og:title", content: invitationData.couple.title },
-      { property: "og:description", content: invitationData.texts.invitationLine2 },
-      { property: "og:image", content: invitationData.couple.photo },
-    ],
-    links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap",
-      },
-    ],
-  }),
-  component: Index,
+export const Route = createFileRoute("/$slug/$date")({
+  loader: async ({ params }) => {
+    return await fetchInvitation(params.slug, params.date);
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {};
+    return {
+      meta: [
+        { title: `${loaderData.couple.title} — Հարսանյաց հրավեր` },
+        { name: "description", content: loaderData.texts.invitationLine1 },
+        { property: "og:title", content: loaderData.couple.title },
+        { property: "og:description", content: loaderData.texts.invitationLine2 },
+        { property: "og:image", content: loaderData.couple.photo },
+      ],
+      links: [
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap",
+        },
+      ],
+    };
+  },
+  component: InvitationPage,
 });
 
-function Index() {
-  const data = invitationData;
+function InvitationPage() {
+  const data = Route.useLoaderData();
   const inviteRef = useRef<HTMLDivElement>(null);
+
   const scrollToInvite = () => inviteRef.current?.scrollIntoView({ behavior: "smooth" });
+
+  if (!data) return null;
 
   const show = {
     calendar: data.sections?.calendar !== false,

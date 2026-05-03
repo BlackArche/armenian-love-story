@@ -4,6 +4,8 @@ import g2 from "@/assets/g2.jpg";
 import g3 from "@/assets/g3.jpg";
 import g4 from "@/assets/g4.jpg";
 
+import { type InvitationData } from "@/lib/api";
+
 export type EventInfo = {
   time: string;
   place: string;
@@ -18,7 +20,7 @@ export type RSVPPayload = {
   guests: number;
 };
 
-export const invitationData = {
+export const invitationData: InvitationData = {
   couple: {
     bride: "Անի",
     groom: "Արամ",
@@ -59,7 +61,8 @@ export const invitationData = {
     invitationLine2: "մեր կյանքի ամենագեղեցիկ օրը",
     openEnvelope: "Բացել հրավերը",
     dressCodeTitle: "Հագուստի կարգ",
-    dressCode: "Խնդրում ենք պահպանել նուրբ երանգներ՝ բեժ, սաղարթագույն, ոսկեգույն։ Տիկնայք՝ երկար զգեստով, պարոնայք՝ կոստյումով։",
+    dressCode:
+      "Խնդրում ենք պահպանել նուրբ երանգներ՝ բեժ, սաղարթագույն, ոսկեգույն։ Տիկնայք՝ երկար զգեստով, պարոնայք՝ կոստյումով։",
     joinButton: "Միանալ Telegram խմբին",
     countdownTitle: "Մինչև մեր մեծ օրը",
     rsvpTitle: "Հաստատեք ներկայությունը",

@@ -5,10 +5,10 @@ type Variant = "default" | "warm" | "sage" | "dark" | "soft";
 
 const palettes: Record<Variant, { a: string; b: string; c: string }> = {
   default: { a: "var(--primary)", b: "var(--secondary)", c: "var(--accent)" },
-  warm:    { a: "var(--primary)", b: "var(--accent)",    c: "var(--primary)" },
-  sage:    { a: "var(--secondary)", b: "var(--primary)", c: "var(--secondary)" },
-  dark:    { a: "var(--secondary)", b: "var(--primary)", c: "var(--accent)" },
-  soft:    { a: "var(--primary)", b: "var(--secondary)", c: "var(--muted)" },
+  warm: { a: "var(--primary)", b: "var(--accent)", c: "var(--primary)" },
+  sage: { a: "var(--secondary)", b: "var(--primary)", c: "var(--secondary)" },
+  dark: { a: "var(--secondary)", b: "var(--primary)", c: "var(--accent)" },
+  soft: { a: "var(--primary)", b: "var(--secondary)", c: "var(--muted)" },
 };
 
 interface Props {
@@ -39,7 +39,7 @@ export default function LuxuryBackground({
         duration: 8 + Math.random() * 10,
         drift: -20 + Math.random() * 40,
       })),
-    [particles]
+    [particles],
   );
 
   return (
@@ -117,7 +117,10 @@ export default function LuxuryBackground({
         <>
           <motion.svg
             className="absolute top-6 left-1/2 -translate-x-1/2 opacity-30"
-            width="120" height="24" viewBox="0 0 120 24" fill="none"
+            width="120"
+            height="24"
+            viewBox="0 0 120 24"
+            fill="none"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.3 }}
             transition={{ duration: 1.4 }}

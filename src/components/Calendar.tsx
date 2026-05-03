@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { invitationData } from "@/data/invitationData";
+import { type InvitationData } from "@/lib/api";
 import LuxuryBackground from "@/components/LuxuryBackground";
 
-export default function Calendar() {
-  const { calendar } = invitationData;
+export default function Calendar({ data }: { data: InvitationData }) {
+  const { calendar } = data;
   const cells: (number | null)[] = [
     ...Array(calendar.firstDayOffset).fill(null),
     ...Array.from({ length: calendar.daysInMonth }, (_, i) => i + 1),
@@ -20,16 +20,16 @@ export default function Calendar() {
         className="max-w-md mx-auto bg-card rounded-3xl shadow-xl ring-1 ring-border p-6 sm:p-8"
       >
         <div className="text-center mb-6">
-          <h3 className="text-3xl font-light italic text-foreground">
-            {calendar.monthName}
-          </h3>
+          <h3 className="text-3xl font-light italic text-foreground">{calendar.monthName}</h3>
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mt-1">
             {calendar.year}
           </p>
         </div>
         <div className="grid grid-cols-7 gap-1 text-center text-xs uppercase tracking-wider text-muted-foreground mb-2">
           {calendar.weekdays.map((d) => (
-            <div key={d} className="py-1">{d}</div>
+            <div key={d} className="py-1">
+              {d}
+            </div>
           ))}
         </div>
         <div className="grid grid-cols-7 gap-1 text-center">

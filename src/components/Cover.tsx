@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { invitationData } from "@/data/invitationData";
+import { type InvitationData } from "@/lib/api";
 import LuxuryBackground from "@/components/LuxuryBackground";
 
 const formatDate = (iso: string) =>
@@ -10,9 +10,9 @@ const formatDate = (iso: string) =>
     year: "numeric",
   });
 
-export default function Cover({ onOpen }: { onOpen: () => void }) {
+export default function Cover({ data, onOpen }: { data: InvitationData; onOpen: () => void }) {
   const [opened, setOpened] = useState(false);
-  const { couple, texts } = invitationData;
+  const { couple, texts } = data;
 
   const handleOpen = () => {
     if (opened) return;

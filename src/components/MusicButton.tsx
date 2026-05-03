@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { invitationData } from "@/data/invitationData";
+import { type InvitationData } from "@/lib/api";
 
-export default function MusicButton() {
+export default function MusicButton({ data }: { data: InvitationData }) {
   const [playing, setPlaying] = useState(false);
   const ref = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    ref.current = new Audio(invitationData.musicUrl);
+    ref.current = new Audio(data.musicUrl);
     ref.current.loop = true;
     ref.current.volume = 0.5;
-    return () => { ref.current?.pause(); ref.current = null; };
-  }, []);
+    return () => {
+      ref.current?.pause();
+      ref.current = null;
+    };
+  }, [data.musicUrl]);
 
   const toggle = () => {
     if (!ref.current) return;
@@ -31,15 +34,9 @@ export default function MusicButton() {
           <motion.span
             key={i}
             className="w-[3px] bg-primary-foreground rounded-full"
-            animate={
-              playing
-                ? { height: ["20%", "100%", "40%", "80%", "20%"] }
-                : { height: "30%" }
-            }
+            animate={playing ? { height: ["20%", "100%", "40%", "80%", "20%"] } : { height: "30%" }}
             transition={
-              playing
-                ? { duration: 0.9, repeat: Infinity, delay: i * 0.12 }
-                : { duration: 0.2 }
+              playing ? { duration: 0.9, repeat: Infinity, delay: i * 0.12 } : { duration: 0.2 }
             }
           />
         ))}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
-import { invitationData } from "@/data/invitationData";
+import { type InvitationData } from "@/lib/api";
 import LuxuryBackground from "@/components/LuxuryBackground";
 
 const labels: Record<string, string> = {
@@ -9,8 +9,8 @@ const labels: Record<string, string> = {
   party: "Տոնական երեկո",
 };
 
-export default function Timeline() {
-  const { event, texts } = invitationData;
+export default function Timeline({ data }: { data: InvitationData }) {
+  const { event, texts } = data;
   const items = (["ceremony", "reception", "party"] as const).map((k) => ({
     key: k,
     label: labels[k],
@@ -56,11 +56,7 @@ export default function Timeline() {
       </h3>
 
       <div className="relative max-w-md mx-auto" style={{ height: H }}>
-        <svg
-          viewBox={`0 0 ${W} ${H}`}
-          className="absolute inset-0 w-full h-full"
-          fill="none"
-        >
+        <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 w-full h-full" fill="none">
           <path
             ref={pathRef}
             d={pathD}
@@ -82,8 +78,17 @@ export default function Timeline() {
           />
           {/* Moving heart */}
           <g transform={`translate(${pos.x - 10}, ${pos.y - 10})`}>
-            <circle r="14" cx="10" cy="10" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-            <text x="10" y="14" textAnchor="middle" fontSize="12" fill="hsl(var(--heart))">❤</text>
+            <circle
+              r="14"
+              cx="10"
+              cy="10"
+              fill="hsl(var(--background))"
+              stroke="hsl(var(--primary))"
+              strokeWidth="1.5"
+            />
+            <text x="10" y="14" textAnchor="middle" fontSize="12" fill="hsl(var(--heart))">
+              ❤
+            </text>
           </g>
         </svg>
 
@@ -100,12 +105,8 @@ export default function Timeline() {
               style={{ top }}
             >
               <div className="bg-card rounded-2xl p-4 shadow-lg ring-1 ring-border">
-                <p className="text-xs tracking-[0.25em] uppercase text-primary">
-                  {it.time}
-                </p>
-                <h4 className="text-xl font-light italic text-foreground mt-1">
-                  {it.label}
-                </h4>
+                <p className="text-xs tracking-[0.25em] uppercase text-primary">{it.time}</p>
+                <h4 className="text-xl font-light italic text-foreground mt-1">{it.label}</h4>
                 <p className="text-sm text-foreground/80 mt-1">{it.place}</p>
                 <p className="text-xs text-muted-foreground">{it.address}</p>
                 <a

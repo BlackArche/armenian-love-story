@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { invitationData, submitRSVP, type RSVPPayload } from "@/data/invitationData";
+import { submitRSVP, type RSVPPayload } from "@/data/invitationData";
+import { type InvitationData } from "@/lib/api";
 import LuxuryBackground from "@/components/LuxuryBackground";
 
 const fieldLabels = {
@@ -17,8 +18,8 @@ const fieldLabels = {
   success: "Շնորհակալություն! Ձեր պատասխանը ստացված է։",
 };
 
-export default function RSVP() {
-  const { texts } = invitationData;
+export default function RSVP({ data }: { data: InvitationData }) {
+  const { texts } = data;
   const [form, setForm] = useState<RSVPPayload>({
     name: "",
     attending: "yes",
@@ -48,9 +49,7 @@ export default function RSVP() {
         <p className="text-xs tracking-[0.4em] uppercase text-primary mb-2 text-center">
           {texts.rsvpTitle}
         </p>
-        <p className="text-xs text-muted-foreground text-center mb-6">
-          {texts.rsvpDeadline}
-        </p>
+        <p className="text-xs text-muted-foreground text-center mb-6">{texts.rsvpDeadline}</p>
 
         {state === "done" ? (
           <motion.p
