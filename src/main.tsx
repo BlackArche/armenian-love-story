@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "@tanstack/react-router";
+import { InvitationProvider } from "./context/InvitationContext";
 import { getRouter } from "./router";
 import "./styles.css";
 
@@ -10,7 +11,7 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
-      <RouterProvider router={getRouter()} />
+      <InvitationProvider><RouterProvider router={getRouter()} /></InvitationProvider>
     </React.StrictMode>,
   );
 }

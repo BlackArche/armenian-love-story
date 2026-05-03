@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import MusicButton from "@/components/MusicButton";
 import { invitationData } from "@/data/invitationData";
 import { type InvitationData } from "@/lib/api";
+import { useInvitation } from "../context/InvitationContext";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,7 +36,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const data = invitationData;
+  const { data: liveData } = useInvitation();
+  // Merge liveData with static invitationData for fallback
+  const data = { ...invitationData, ...liveData } as any;
+  
   const inviteRef = useRef<HTMLDivElement>(null);
   const scrollToInvite = () => inviteRef.current?.scrollIntoView({ behavior: "smooth" });
 
@@ -66,3 +70,5 @@ function Index() {
     </main>
   );
 }
+
+export default Index;
