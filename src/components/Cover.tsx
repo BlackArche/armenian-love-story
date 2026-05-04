@@ -13,7 +13,7 @@ const formatDate = (iso: string) =>
 export default function Cover({ data, onOpen }: { data: InvitationData; onOpen: () => void }) {
   const [opened, setOpened] = useState(false);
   const { couple, texts } = data;
-
+  console.log(data);
   const handleOpen = () => {
     if (opened) return;
     setOpened(true);

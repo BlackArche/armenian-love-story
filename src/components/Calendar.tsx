@@ -26,7 +26,7 @@ export default function Calendar({ data }: { data: InvitationData }) {
           </p>
         </div>
         <div className="grid grid-cols-7 gap-1 text-center text-xs uppercase tracking-wider text-muted-foreground mb-2">
-          {calendar.weekdays.map((d) => (
+          {(Array.isArray(calendar.weekdays) ? calendar.weekdays : []).map((d) => (
             <div key={d} className="py-1">
               {d}
             </div>

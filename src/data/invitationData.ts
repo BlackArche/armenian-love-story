@@ -1,9 +1,8 @@
-import couplePhoto from "@/assets/couple.jpg";
 import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
 import g3 from "@/assets/g3.jpg";
 import g4 from "@/assets/g4.jpg";
-
+import couplePhoto from "@/assets/couple.jpg";
 import { type InvitationData } from "@/lib/api";
 
 export type EventInfo = {
@@ -75,7 +74,6 @@ export const invitationData: InvitationData = {
     monthName: "Սեպտեմբեր",
     year: 2026,
     weekdays: ["Եր", "Եք", "Չր", "Հգ", "Ուր", "Շբ", "Կր"],
-    // Sept 1, 2026 is Tuesday → offset 1 (Mon-first week)
     firstDayOffset: 1,
     daysInMonth: 30,
     weddingDay: 12,

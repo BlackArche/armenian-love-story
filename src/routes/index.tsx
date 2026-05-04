@@ -39,7 +39,7 @@ function Index() {
   const { data: liveData } = useInvitation();
   // Merge liveData with static invitationData for fallback
   const data = { ...invitationData, ...liveData } as any;
-  
+
   const inviteRef = useRef<HTMLDivElement>(null);
   const scrollToInvite = () => inviteRef.current?.scrollIntoView({ behavior: "smooth" });
 

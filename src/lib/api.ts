@@ -59,7 +59,9 @@ export type InvitationData = {
   };
 };
 
-const BASE_API_URL = "https://api.amorete.me/api/invitations";
+const BASE_API_URL = import.meta.env.PROD
+  ? "https://api.amorete.me/api/invitations"
+  : "http://localhost:7777/api/invitations";
 
 export async function fetchInvitation(slug: string, date: string): Promise<InvitationData> {
   const response = await fetch(`${BASE_API_URL}/${slug}/${date}`);

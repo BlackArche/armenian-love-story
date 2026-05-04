@@ -11,13 +11,17 @@ import RSVP from "@/components/RSVP";
 import Footer from "@/components/Footer";
 import MusicButton from "@/components/MusicButton";
 import { fetchInvitation } from "@/lib/api";
+import { invitationData } from "@/data/invitationData";
 
 export const Route = createFileRoute("/$slug/$date")({
   loader: async ({ params }) => {
+    console.log("mtavvvv");
     return await fetchInvitation(params.slug, params.date);
   },
   head: ({ loaderData }) => {
     if (!loaderData) return {};
+    console.log("mtavvvv");
+
     return {
       meta: [
         { title: `${loaderData.couple.title} — Հարսանյաց հրավեր` },
@@ -40,11 +44,10 @@ export const Route = createFileRoute("/$slug/$date")({
 });
 
 function InvitationPage() {
-  const data = Route.useLoaderData();
+  const data = Route.useLoaderData() || invitationData;
   const inviteRef = useRef<HTMLDivElement>(null);
-
   const scrollToInvite = () => inviteRef.current?.scrollIntoView({ behavior: "smooth" });
-
+  console.log(data, "88888888888");
   if (!data) return null;
 
   const show = {
@@ -56,7 +59,6 @@ function InvitationPage() {
     rsvp: data.sections?.rsvp !== false,
     music: data.sections?.music !== false && !!data.musicUrl,
   };
-
   return (
     <main className="bg-background text-foreground font-body">
       <Cover data={data} onOpen={scrollToInvite} />
